@@ -5,7 +5,7 @@
   2. Замените пустую строку ниже на "assets/videos/main-greeting.mp4".
   При загрузке из браузера видео показывается лишь временно — для постоянной публикации пользуйтесь пунктами выше.
 */
-const MAIN_GREETING_PATH = '';
+const MAIN_GREETING_PATH = 'assets/videos/birthday_film.mp4';
 
 (function () {
   'use strict';
@@ -108,37 +108,21 @@ const MAIN_GREETING_PATH = '';
   reducedMotion.addEventListener?.('change', switchPlayback);
   updateIndex(0);
 
-  /* Видеопослание: намеренно оставлено место для финального ролика. */
-  const greetingInput = document.getElementById('greetingInput');
+  /* Портретное видеопослание из assets/videos/birthday_film.mp4.
+     Файл лежит в проекте и доступен всем посетителям GitHub Pages. */
   const greetingVideo = document.getElementById('greetingVideo');
-  const greetingEmpty = document.getElementById('greetingEmpty');
-  const greetingMessage = document.getElementById('uploadMessage');
-  let greetingObjectUrl = null;
-
-  function showGreeting(src, isPreview) {
-    greetingVideo.pause();
-    greetingVideo.src = src;
-    greetingVideo.hidden = false;
-    greetingEmpty.hidden = true;
-    greetingEmpty.style.display = 'none';
-    greetingVideo.load();
-    if (greetingMessage) greetingMessage.textContent = isPreview
-      ? 'Это только предпросмотр на твоём устройстве. Чтобы видео появлялось у всех, скопируй его в папку сайта и укажи путь в js/main.js (см. README).'
-      : 'Главное поздравление от друзей. Приятного просмотра.';
+  if (greetingVideo) {
+    greetingVideo.addEventListener('error', () => {
+      const screen = document.getElementById('greetingScreen');
+      if (screen && !screen.querySelector('.greeting-error')) {
+        const msg = document.createElement('p');
+        msg.className = 'greeting-error';
+        msg.textContent = 'Не удалось загрузить видео. Проверьте файл assets/videos/birthday_film.mp4.';
+        msg.style.cssText = 'color:#fff2df;text-align:center;padding:20px;position:absolute;inset:15px;z-index:4;background:#301c26cc;';
+        screen.appendChild(msg);
+      }
+    });
   }
-  document.getElementById('chooseGreeting').addEventListener('click', () => greetingInput.click());
-  greetingInput.addEventListener('change', () => {
-    const file = greetingInput.files && greetingInput.files[0];
-    if (!file) return;
-    if (!file.type.startsWith('video/')) {
-      if (greetingMessage) greetingMessage.textContent = 'Пожалуйста, выбери видеофайл (лучше MP4).';
-      return;
-    }
-    if (greetingObjectUrl) URL.revokeObjectURL(greetingObjectUrl);
-    greetingObjectUrl = URL.createObjectURL(file);
-    showGreeting(greetingObjectUrl, true);
-  });
-  if (MAIN_GREETING_PATH) showGreeting(MAIN_GREETING_PATH, false);
 
   /* Цельные редакционные образы из единой иллюстрации: без несовместимых накладок. */
   const lookButtons = [...document.querySelectorAll('[data-look]')];
@@ -197,6 +181,14 @@ const MAIN_GREETING_PATH = '';
   const wishReveal = document.getElementById('wishReveal');
   const confettiLayer = document.getElementById('confettiLayer');
   let blown = false;
+  function resetCandles() {
+    blown = false;
+    cake.classList.remove('blown');
+    wishReveal.classList.remove('visible');
+    blowButton.innerHTML = 'Задуть свечи <span>✧</span>';
+  }
+  resetCandles();
+  window.addEventListener('pageshow', event => { if (event.persisted) resetCandles(); });
 
   function showerConfetti() {
     if (reducedMotion.matches) return;
@@ -225,4 +217,31 @@ const MAIN_GREETING_PATH = '';
     blowButton.innerHTML = blown ? 'Зажечь свечи снова <span>↺</span>' : 'Задуть свечи <span>✧</span>';
     if (blown) showerConfetti();
   });
+  /* Точный отсчёт до 10:00 по Риму, 27 октября 2026 года.
+     В этот день Рим находится в CET (UTC+01:00); время не зависит от часового пояса устройства. */
+  const giftDeadline = Date.parse('2026-10-27T10:00:00+01:00');
+  const giftHours = document.getElementById('giftHours');
+  const giftMinutes = document.getElementById('giftMinutes');
+  const giftSeconds = document.getElementById('giftSeconds');
+  const giftStatus = document.getElementById('giftCountdownStatus');
+  if (giftHours && giftMinutes && giftSeconds && giftStatus) {
+    const padTime = number => String(number).padStart(2, '0');
+    let giftHasArrived = false;
+    function updateGiftTimer() {
+      const remainingSeconds = Math.max(0, Math.ceil((giftDeadline - Date.now()) / 1000));
+      giftHours.textContent = padTime(Math.floor(remainingSeconds / 3600));
+      giftMinutes.textContent = padTime(Math.floor((remainingSeconds % 3600) / 60));
+      giftSeconds.textContent = padTime(remainingSeconds % 60);
+      const arrived = remainingSeconds === 0;
+      if (arrived !== giftHasArrived) {
+        giftStatus.textContent = arrived
+          ? 'Время сюрприза! Загляни в сообщения на телефоне.'
+          : '27 октября · 10:00 · Рим';
+        giftHasArrived = arrived;
+      }
+      if (arrived) window.clearInterval(giftInterval);
+    }
+    const giftInterval = window.setInterval(updateGiftTimer, 1000);
+    updateGiftTimer();
+  }
 })();

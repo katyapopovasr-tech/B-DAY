@@ -140,3 +140,51 @@ html,body{max-width:100%;overflow-x:clip}
 /* V11: no separate background panel behind the editorial doll; the cleaned PNG has transparent edges. */
 .dressup-section .paper-doll-garment{background:transparent!important;}
 .dressup-section .doll-canvas{filter:none!important;}
+
+
+/* 27 OCT 2026 — Surprise certificate, Italy 10:00 AM, portrait greeting film */
+.greeting-grid{grid-template-columns:42% minmax(0,58%);align-items:center;gap:26px}
+.greeting-player-wrap{display:flex;justify-content:center;min-width:0;padding:6px 15px 14px}
+.greeting-player-wrap .video-window{width:min(100%,355px);margin-inline:auto;transform:rotate(1deg);box-shadow:13px 13px 0 #b69c82}
+.greeting-screen{width:100%;aspect-ratio:9/16;min-height:0;border:8px solid #29191f}
+.greeting-screen video{display:block!important;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#160f14}
+.window-titlebar{gap:8px}.window-titlebar>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.gift-section{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 78% 47%,#f9efdf 0%,#efe2ce 55%,#e9dbc7 100%);border-top:1px solid #d8c5ab;border-bottom:1px solid #d1bba1}
+.gift-section:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 35px,rgba(255,255,255,.22) 36px 37px);opacity:.45;z-index:-1;pointer-events:none}
+.gift-layout{display:grid;grid-template-columns:minmax(0,47%) minmax(0,53%);gap:22px;align-items:center}
+.gift-copy{padding-block:24px}.gift-index{color:#765d53;margin-bottom:39px}
+.gift-overline{display:block;font:10px var(--mono);letter-spacing:.17em;color:#a13f51;margin-bottom:17px}
+.gift-copy h2{font-size:clamp(49px,5.3vw,76px);line-height:1.13;letter-spacing:-.075em;margin-bottom:30px}
+.gift-copy h2 em{color:var(--burgundy)}
+.gift-description{max-width:435px;font-size:15px;line-height:1.85;color:#5c4d46}
+.gift-description strong{font-weight:800;color:#79253a}
+.gift-phone-note{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:10px 15px;border-left:2px solid #a77845;color:#794539;background:#ead6bb88;font:20px/1.1 var(--script)}
+.gift-phone-note span{color:#ad744d;font:25px var(--sans)}
+.gift-date-note{margin-top:26px;font:10px var(--mono);letter-spacing:.14em;color:#96816d}.gift-date-note span{padding-inline:7px;color:#ad7b56}
+.gift-scene{position:relative;min-height:550px;max-width:610px;width:100%;margin-inline:auto;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.gift-scene:before{content:'';width:490px;height:410px;position:absolute;top:60px;left:50%;transform:translateX(-50%);border:1px solid #d1b59a;border-radius:50%;opacity:.6}
+.gift-scene-spark{position:absolute;z-index:3;color:#b98751;pointer-events:none}.gift-scene-spark-one{top:45px;right:12%;font-size:38px}.gift-scene-spark-two{bottom:87px;left:4%;font-size:32px}
+.gift-envelope{position:absolute;width:min(90%,440px);height:265px;bottom:77px;left:50%;transform:translateX(-50%) rotate(-3deg);z-index:1}
+.gift-envelope-back{position:absolute;inset:0;background:#bb8663;clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);box-shadow:0 12px 20px #4f292329}
+.gift-card{position:relative;z-index:2;width:min(78%,365px);min-height:392px;margin:0 auto 64px;padding:25px 30px 21px;background:#fff9ed;border:1px solid #d9bea0;outline:5px solid #f7e9d5;box-shadow:6px 10px 19px rgba(75,42,38,.15);transform:rotate(2deg);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.gift-card:before{content:'';pointer-events:none;position:absolute;inset:9px;border:1px solid #d3b788}
+.gift-card-topline{width:100%;display:flex;justify-content:space-between;gap:6px;font:9px var(--mono);letter-spacing:.07em;color:#8d694f}.gift-card-topline span{color:#b48e61}
+.gift-card-heading{font:italic 34px/1.15 var(--serif);letter-spacing:-.045em;color:#69263b;margin-top:17px}.gift-card-heading em{color:#b48b50;font-weight:400}
+.gift-card-divider{font-size:19px;color:#bd8e54;margin:9px 0 2px}
+.gift-countdown-label{font:9px var(--mono);letter-spacing:.14em;color:#84675d}
+.gift-countdown{width:100%;display:flex;justify-content:center;align-items:flex-start;gap:7px;color:#75263c;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.gift-time-part{display:flex;flex-direction:column;align-items:center;min-width:57px}.gift-time-part strong{font:500 38px/1 var(--serif);letter-spacing:-.035em}.gift-time-part span{font:8px var(--mono);letter-spacing:.09em;color:#9f796b;margin-top:9px}
+.gift-time-colon{font:32px/1 var(--serif);color:#b68a57}
+.gift-countdown-status{font:11px/1.5 var(--sans);color:#8b5c53;min-height:30px;margin-top:9px;position:relative;z-index:1}
+.gift-card-bottom{font:9px var(--mono);letter-spacing:.09em;color:#b28768;margin-top:auto;padding-top:8px}
+.gift-envelope-front{pointer-events:none;position:absolute;width:min(90%,440px);height:230px;bottom:77px;left:50%;transform:translateX(-50%) rotate(-3deg);z-index:3;background:linear-gradient(135deg,#e2bd94,#cb9a70);clip-path:polygon(0 0,50% 66%,100% 0,100% 100%,0 100%);filter:drop-shadow(3px 8px 5px #52302524)}
+.gift-envelope-front:after{content:'';position:absolute;inset:0;background:#f6dfc033;clip-path:polygon(0 100%,50% 25%,100% 100%);opacity:.55}
+.gift-envelope-seal{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);z-index:4;display:grid;place-items:center;border:2px double #8d4e45;width:45px;height:45px;border-radius:50%;background:#a84e52;color:#f6dcc0;font:italic 28px var(--serif)}
+.gift-under-caption{position:absolute;bottom:26px;left:0;right:0;text-align:center;font:9px var(--mono);letter-spacing:.15em;color:#8a6659}
+@media(max-width:850px){.greeting-grid{grid-template-columns:1fr}.greeting-player-wrap{padding:0 12px 12px}.gift-layout{grid-template-columns:1fr;gap:15px}.gift-copy{padding:5px 0 0}.gift-index{margin-bottom:25px}.gift-scene{min-height:525px}}
+@media(max-width:580px){.greeting-player-wrap .video-window{width:min(100%,330px)}.greeting-screen{aspect-ratio:9/16;min-height:0;border-width:6px}.gift-section{padding-block:73px 55px}.gift-copy h2{font-size:clamp(44px,10.5vw,62px);margin-bottom:24px}.gift-description{font-size:13px}.gift-phone-note{font-size:19px;margin-top:21px}.gift-date-note{margin-top:20px}.gift-scene{min-height:474px;max-width:390px}.gift-scene:before{width:96%;height:325px;top:75px}.gift-card{width:79%;min-height:335px;margin-bottom:75px;padding:21px 18px 17px}.gift-card-heading{font-size:27px;margin-top:12px}.gift-countdown-label{font-size:8px}.gift-time-part{min-width:43px}.gift-time-part strong{font-size:31px}.gift-time-part span{font-size:7px}.gift-time-colon{font-size:27px}.gift-countdown-status{font-size:10px}.gift-envelope,.gift-envelope-front{width:91%;bottom:48px}.gift-envelope{height:215px}.gift-envelope-front{height:195px}.gift-envelope-seal{width:39px;height:39px}.gift-under-caption{bottom:4px;font-size:8px}}
+@media(max-width:365px){.gift-time-part{min-width:39px}.gift-card{width:80%;padding-inline:13px}.gift-scene{min-height:460px}}
+
+/* Visible wax seal on the center front of the envelope */
+.gift-envelope-front .gift-envelope-seal{top:78%;}
